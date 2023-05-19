@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Clicker Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <center><h1>CLICKER!</h1></center>
+        <center><p id="score">0</p></center>
+        <center><img src="https://th.bing.com/th/id/OIP.bk5-8A8AwUQrxfs3HfvUywHaHS?pid=ImgDet&w=1080&h=1064&rs=1" width="230px" height="200"></center>
+
+        <center><button id="button">CLICK!</button></center>
+        <script>
+            let button = document.getElementById('button');
+            let score = document.getElementById('score');
+            let clicks = 0;
+
+            button.addEventListener('click', function() {
+                clicks++;
+                score.innerHTML= clicks;
+                console.log('Button clicked: ' + score.textContent);
+            });
+        </script>
+
+        <button id="reset">Reset</button>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>
+</body>
