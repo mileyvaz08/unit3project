@@ -1,35 +1,168 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Clicker Game</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Clicker</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <style>
+        .hidden{
+            display:none;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <div class="content">
-        <center><h1>CLICKER!</h1></center>
-        <center><p id="score">0</p></center>
-        <center><img src="https://th.bing.com/th/id/OIP.bk5-8A8AwUQrxfs3HfvUywHaHS?pid=ImgDet&w=1080&h=1064&rs=1" width="230px" height="200"></center>
+        <h2 id="lose">NAME</h2>
+        <div class="scoreplace">
+            <h3 id="score">CLICK: 0</h3>
+        </div>
+        <div class="text">
 
-        <center><button id="button">CLICK!</button></center>
-        <script>
-            let button = document.getElementById('button');
-            let score = document.getElementById('score');
-            let clicks = 0;
-
-            button.addEventListener('click', function() {
-                clicks++;
-                score.innerHTML= clicks;
-                console.log('Button clicked: ' + score.textContent);
-            });
-        </script>
-
-        <button id="reset">Reset</button>
+        </div>
+        <input type="text" id="username" name="username" placeholder="Enter name">
+        <button id="submit">Submit</button>
+        <div class="row">
+            <div class="avatar">
+                <img id="picture" height="100" width="100" alt="your avatar!" src="https://www.telegraph.co.uk/multimedia/archive/03011/shark-lemon-1_3011040k.jpg">
+            </div>
+        </div>
+        <button id="click">CLICK!</button>
+        <div class="row">
+            <fieldset>
+                <legend><h3>Shop</h3></legend>
+                <div class="row">
+                    <label for="1">Can feed 1 more. (Need 50 CLICKS)</label>
+                    <button id="1">Buy</button>
+                </div>
+                <div class="row">
+                    <label for="5">Can feed 5 more at a time (Need 250 CLICKS)</label>
+                    <button id="5">Buy</button>
+                </div>
+                <div class="row">
+                    <label for="10">Can feed 10 more at a time (Need 2,000 CLICKS)</label>
+                    <button id="10">Buy</button>
+                </div>
+                <div class="row">
+                    <label for="25">Can feed 25 more at a time (Need 10,000 CLICKS)</label>
+                    <button id="25">Buy</button>
+                </div>
+                <div class="row">
+                    <label for="50">Can feed 50 more at a time (Need 42,333 CLICKS)</label>
+                    <button id="50">Buy</button>
+                </div>
+                <div class="row">
+                    <label for="100">Can feed 100 more at a time (Need 1,000,000,000 CLICKS)</label>
+                    <button id="100">Buy</button>
+                </div>
+                <br>
+                <div class="row">
+                    <label for="win">Win the game</label>
+                    <button id="win">Buy</button>
+                </div>
+            </fieldset>
+        </div>
     </div>
 </div>
-</div>
-</div>
+<script>
+    const content = document.querySelector('.text');
+
+    const user = document.querySelector('user');
+    const username = document.getElementById('username');
+    const submit = document.getElementById('submit');
+
+    submit.addEventListener('click', function(e){
+        let displayuser = username.value;
+
+        const actualuser = document.createElement('h2');
+        actualuser.innerHTML = `${displayuser}`;
+        content.insertAdjacentElement('afterbegin', actualuser);
+
+        const unwantedElement = document.querySelector('#lose');
+        unwantedElement.remove();
+
+        username.classList.add("hidden");
+        submit.classList.add("hidden");
+    });
+
+    let score = document.getElementById('score');
+    const scorePlace = document.querySelector('.scoreplace');
+    const click = document.getElementById('click');
+    const picture = document.getElementById('picture');
+
+    score = 0;
+    click.addEventListener('click', function(e){
+        score++;
+        scorePlace.innerHTML = `<h3 id="score">CLICK: ${score}</h3>`;
+
+        if(score >= 10000){
+            picture.src = "https://multifiles.pressherald.com/uploads/sites/4/2018/03/basking.jpg";
+        }
+        else if(score >= 1000){
+            picture.src = "https://th.bing.com/th/id/OIP.OPl1f4TjhfQMbYpml18aEwHaE8?pid=ImgDet&rs=1";
+        }
+        else if(score >= 500){
+            picture.src = "https://i.redd.it/50x1ns9mcms41.jpg";
+        }
+        else if(score >= 100){
+            picture.src = "https://www.mensjournal.com/wp-content/uploads/2014/03/CATERS_HAMMERHEAD_SHARKS_SURROUND_DIVER_FEEDING_TOUCHING_06.jpg";
+        }
+        else if (score >= 70){
+            picture.src = "https://th.bing.com/th/id/R.3a0cc5f166065ca3cd89f0c11de216d7?rik=RQWFRhD1MzzViA&riu=http%3a%2f%2fwww.wallpaperama.com%2fpost-images%2fwallpapers%2faquarium%2fgreat-white-shark.jpg&ehk=QVpuJI2AzvgsW%2bfUGfF9DQO66W2Wh3skjd1Le1M%2fyjU%3d&risl=&pid=ImgRaw&r=0";
+        }
+        else if(score >= 69){
+            picture.src = "https://www.telegraph.co.uk/multimedia/archive/03011/shark-lemon-1_3011040k.jpg";
+        }
+        else if (score >= 60){
+            picture.src = "https://th.bing.com/th/id/OIP.uKIpCvN8n0HQRufsFz-1uAHaHX?pid=ImgDet&w=735&h=731&rs=1";
+        }
+    });
+
+    const times2 = document.getElementById('1');
+
+    let i = 1;
+
+    times2.addEventListener('click', function(e){
+        if(score >= 50){
+            score -= 50;
+            click.addEventListener('click', function(e){
+                score += i;
+                scorePlace.innerHTML = `<h3 id="score">CLICK: ${score}</h3>`;
+            });
+        }
+    });
+
+    const times5 = document.getElementById('5');
+
+    let q = 5;
+
+    times5.addEventListener('click', function(e){
+        if(score >= 250){
+            score -= 250;
+            click.addEventListener('click', function(e){
+                score += q;
+                scorePlace.innerHTML = `<h3 id="score">CLICK: ${score}</h3>`;
+            });
+        }
+    });
+
+    const times10 = document.getElementById('5');
+
+    let w = 5;
+
+    times10.addEventListener('click', function(e){
+        if(score >= 2000){
+            score -= 2000;
+            click.addEventListener('click', function(e){
+                score += w;
+                scorePlace.innerHTML = `<h3 id="score">CLICK: ${score}</h3>`;
+            });
+        }
+    });
+
+
+</script>
 </body>
 </html>
-</body>
+
+has context menu
