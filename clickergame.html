@@ -5,9 +5,6 @@
     <title>Clicker</title>
     <link href="style.css" rel="stylesheet" type="text/css">
     <style>
-        .hidden{
-            display:none;
-        }
     </style>
 </head>
 <body>
@@ -20,7 +17,7 @@
         <div class="text">
 
         </div>
-        <input type="text" id="username" name="username" placeholder="Enter name">
+        <label for="username"></label><input type="text" id="username" name="username" placeholder="Enter name">
         <button id="submit">Submit</button>
         <div class="row">
             <div class="avatar">
@@ -66,12 +63,11 @@
 </div>
 <script>
     const content = document.querySelector('.text');
-
-    const user = document.querySelector('user');
+    document.querySelector('user');
     const username = document.getElementById('username');
     const submit = document.getElementById('submit');
 
-    submit.addEventListener('click', function(e){
+    submit.addEventListener('click', function(){
         let displayuser = username.value;
 
         const actualuser = document.createElement('h2');
@@ -91,7 +87,7 @@
     const picture = document.getElementById('picture');
 
     score = 0;
-    click.addEventListener('click', function(e){
+    click.addEventListener('click', function(){
         score++;
         scorePlace.innerHTML = `<h3 id="score">CLICK: ${score}</h3>`;
 
@@ -122,10 +118,10 @@
 
     let i = 1;
 
-    times2.addEventListener('click', function(e){
+    times2.addEventListener('click', function(){
         if(score >= 50){
             score -= 50;
-            click.addEventListener('click', function(e){
+            click.addEventListener('click', function(){
                 score += i;
                 scorePlace.innerHTML = `<h3 id="score">CLICK: ${score}</h3>`;
             });
@@ -136,10 +132,10 @@
 
     let q = 5;
 
-    times5.addEventListener('click', function(e){
+    times5.addEventListener('click', function(){
         if(score >= 250){
             score -= 250;
-            click.addEventListener('click', function(e){
+            click.addEventListener('click', function(){
                 score += q;
                 scorePlace.innerHTML = `<h3 id="score">CLICK: ${score}</h3>`;
             });
@@ -150,10 +146,10 @@
 
     let w = 5;
 
-    times10.addEventListener('click', function(e){
+    times10.addEventListener('click', function(){
         if(score >= 2000){
             score -= 2000;
-            click.addEventListener('click', function(e){
+            click.addEventListener('click', function(){
                 score += w;
                 scorePlace.innerHTML = `<h3 id="score">CLICK: ${score}</h3>`;
             });
